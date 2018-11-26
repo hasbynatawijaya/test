@@ -1,9 +1,9 @@
 import axios from "axios";
-import jwtDecode from "jwt-decode";
+//import jwtDecode from "jwt-decode";
 
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
 
-const BASE_URL = "https://dev.gadjian.com";
+//const BASE_URL = "https://dev.gadjian.com";
 
 export const setAuthorizationToken = token => {
   if (token) {
@@ -23,18 +23,32 @@ export const logout = () => {
 
 export const login = data => {
   return dispatch => {
-    return axios.post(`${BASE_URL}/oauth/token`, data).then(res => {
-      const token = res.data;
-      localStorage.setItem("jwtToken", token);
-      setAuthorizationToken(token);
-      dispatch(setCurrentUser(jwtDecode(token)));
-    });
+    return axios
+      .post("/oauth/token", data, {
+        mode: "no-cors",
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/json"
+        },
+        withCredentials: true,
+        credentials: "same-origin"
+      })
+      .then(res => {
+        const token = res.data;
+        localStorage.setItem("jwtToken", token.token);
+        setAuthorizationToken(token.token);
+        dispatch(setCurrentUser(token));
+        console.log(token);
+      })
+      .catch(err => {
+        console.log("error: " + err);
+      });
   };
 };
 
-export const setCurrentUser = (user) => {
+export const setCurrentUser = user => {
   return {
     type: SET_CURRENT_USER,
-    user
+    user,
   };
-}
+};

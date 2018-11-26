@@ -2,7 +2,7 @@
   "name": "contactmanager",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://dev.gadjian.com/",
+  "proxy": "https://dev.gadjian.com",
   "dependencies": {
     "axios": "^0.18.0",
     "babel-traverse": "^6.26.0",

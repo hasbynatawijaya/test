@@ -8,19 +8,19 @@ import {
 import axios from "axios";
 import { asyncActionError, asyncActionStart, asyncActionFinish } from "./asyncActions";
 
-
-const delay = (ms) => {
-  return new Promise(resolve => setTimeout(resolve, ms))
-}
+// const access_token = localStorage.getItem("jwtToken");
+// axios.defaults.headers.common['Authorization'] = `Bearer${access_token}`
+ 
 
 export const getContacts = () => async dispatch => {
   try {
     dispatch(asyncActionStart())
-    const res = await axios.get("https://jsonplaceholder.typicode.com/users");
+    const res = await axios.get("/v1/employees");
     dispatch({
       type: GET_CONTACTS,
-      payload: res.data
+      payload: res.data.data
     });
+    // console.log(res.data.data);
     dispatch(asyncActionFinish())
   } catch (error) {
     console.log(error);

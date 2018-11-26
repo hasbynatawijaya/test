@@ -13,29 +13,19 @@ class Contacts extends Component {
 
     return (
       <React.Fragment>
-        <h1 className="display-4 mb-2">
-          <span className="text-danger">React</span> API TEST
-        </h1>
-
+        {loading && contacts ? (
+          <div className="loader" >
+          </div>
+        ) : (
+          <h1 className="display-4 mb-2">
+            <span className="text-danger">React</span> API TEST Gadjian
+          </h1>
+        )}
         {contacts.map(contact => (
-          <Contact key={contact.id} contact={contact} loading={loading} />
+          <Contact key={contact.idk} contact={contact} loading={loading} />
         ))}
       </React.Fragment>
     );
-
-    // return loading ? (
-    //   <p>Loading....</p>
-    // ) : (
-    //   <React.Fragment>
-    //     <h1 className="display-4 mb-2">
-    //       <span className="text-danger">React</span> API TEST
-    //     </h1>
-
-    //     {contacts.map(contact => (
-    //       <Contact key={contact.id} contact={contact} />
-    //     ))}
-    //   </React.Fragment>
-    // );
   }
 }
 

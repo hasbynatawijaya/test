@@ -14,14 +14,13 @@ class Contact extends Component {
   };
 
   render() {
-    const { id, name, email, phone } = this.props.contact;
-    const { loading } = this.props;
+    const { idk, nama, no_hp, email } = this.props.contact;
     const { showContactInfo } = this.state;
 
     return (
       <div className="card card-body mb-3">
         <h4>
-          {name}
+          {nama}
           <i
             onClick={() =>
               this.setState({
@@ -34,9 +33,9 @@ class Contact extends Component {
           <i
             className="fas fa-times"
             style={{ cursor: "pointer", float: "right", color: "red" }}
-            onClick={this.onDeleteClick.bind(this, id)}
+            onClick={this.onDeleteClick.bind(this, idk)}
           />
-          <Link to={`contact/edit/${id}`}>
+          <Link to={`contact/edit/${idk}`}>
             <i
               className="fas fa-pencil-alt"
               style={{
@@ -51,7 +50,7 @@ class Contact extends Component {
         {showContactInfo ? (
           <ul className="list-group">
             <li className="list-group-item">Email: {email}</li>
-            <li className="list-group-item">Phone: {phone}</li>
+            <li className="list-group-item">Phone: {no_hp}</li>
           </ul>
         ) : null}
       </div>

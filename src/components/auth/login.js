@@ -8,8 +8,9 @@ class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: '',
+      email: '',
       password: '',
+      grant_type:'password'
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -23,8 +24,7 @@ class LoginForm extends Component {
         // make sure we use arrow functions to bind `this` correctly
         (res) => this.props.history.push('/'),
         (err) => {
-          console.log(err);
-          
+          console.log('error: ' + err);
         });
   }
 
@@ -33,7 +33,7 @@ class LoginForm extends Component {
   }
 
   render() {
-    const { username, password } = this.state;
+    const { email, password } = this.state;
 
     return (
       <div className="row">
@@ -41,8 +41,8 @@ class LoginForm extends Component {
       <form onSubmit={this.onSubmit}>
         <h1>Login</h1>
         <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input type="text" id="username" name="username" value={username} onChange={this.onChange}/>
+            <label htmlFor="email">Email</label>
+            <input type="text" id="email" name="email" value={email} onChange={this.onChange}/>
           </div>
           <div className="form-group">
             <label htmlFor="password">password</label>
